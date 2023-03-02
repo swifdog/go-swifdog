@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	client, _ := NewBearerTokenClient("bF22pK1Kal7aqFgpMvYX1t22ILS5JVlHVvy1SDzihRdPTkBK1gnwSeiuXCEdHAaP")
+	client, _ := NewBearerTokenClient("gFxdTo3ONHd1EDk859NX8tNsqRDegP8zhzDWtfCMKkUPK4Gv2Wfm53aAXEoJeLcD")
 	account, err := client.GetAccount()
 	if err != nil {
 		log.Fatal(err)
@@ -56,9 +56,7 @@ func main() {
 	log.Println(prjs)
 
 	// create project
-	newPrj, err := client.CreateProject(&CreateOrPatchProjectRequest{
-
-	})
+	newPrj, err := client.CreateProject(&CreateOrPatchProjectRequest{})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -67,7 +65,7 @@ func main() {
 
 	// patch project attributes
 	newPrj, err = client.PatchProject(newPrj.ID, &CreateOrPatchProjectRequest{
-		Name: "test-project",
+		Name:        "test-project",
 		Description: "ich mag golang!",
 	})
 	if err != nil {
@@ -78,8 +76,8 @@ func main() {
 
 	// create pv
 	newVolume, err := client.CreatePersistentVolume(newPrj.ID, &CreateOrPatchPersistentVolumeRequest{
-		Name: "demo-volume",
-		Capacity: "1G",
+		Name:     "demo-volume",
+		Capacity: "test",
 	})
 	if err != nil {
 		log.Fatal(err)
