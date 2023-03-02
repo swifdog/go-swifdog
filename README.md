@@ -1,6 +1,6 @@
 # go-swifdog
 
-This library provides a Golang API client for the Swifdog API. It is mainly maintained by the core team.
+This library provides an API client for the Swifdog API. It is mainly maintained by the core team.
 
 ## Examples
 
