@@ -4,17 +4,17 @@ This library provides a Golang API client for the Swifdog API. It is mainly main
 
 ## Examples
 
-## Clients
+### Clients
 
 We support two types of authentication: using a basic email/password login and a custom baerer token login.
 
-### Basic Client
+#### Basic Client
 
 ```go
 client, _ := NewBasicClient("email", "password")
 ```
 
-### Bearer Token Client
+#### Bearer Token Client
 
 ```go
 client, _ := NewBearerTokenClient("oylI1I4N7QDtf8WuI9UItKACpnwaI69MQZhKELeRzJfzovMmZVdvFKzrOCCr9S7j")
