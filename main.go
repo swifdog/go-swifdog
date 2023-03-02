@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	client, _ := NewBearerTokenClient("oylI1I4N7QDtf8WuI9UItKACpnwaI69MQZhKELeRzJfzovMmZVdvFKzrOCCr9S7j")
+	client, _ := NewBasicClient("oylI1I4N7QDtf8WuI9UItKACpnwaI69MQZhKELeRzJfzovMmZVdvFKzrOCCr9S7j")
 	account, err := client.GetAccount()
 	if err != nil {
 		log.Fatal(err)
