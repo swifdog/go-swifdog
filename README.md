@@ -4,6 +4,8 @@ This library provides a Golang API client for the Swifdog API. It is mainly main
 
 ## Examples
 
+In the following section, you'll find a lot of usage samples.
+
 ### Clients
 
 We support two types of authentication: using a basic email/password login and a custom baerer token login.
