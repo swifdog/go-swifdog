@@ -5,6 +5,12 @@ import (
 	"net/http"
 )
 
+type Account struct {
+	Id               string `json:"id"`
+	Email            string `json:"email"`
+	CreationDateTime string `json:"creationDateTime"`
+}
+
 func (c *Client) GetAccount() (*Account, error) {
 	request, err := http.NewRequest("GET", c.Endpoint+"/account", nil)
 	if err != nil {

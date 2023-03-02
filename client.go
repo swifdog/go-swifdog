@@ -49,6 +49,7 @@ func (c *Client) ExecuteRequest(request *http.Request) (*[]byte, error) {
 	if c.AuthorizationHeader != nil {
 		request.Header.Add("Authorization", *c.AuthorizationHeader)
 	}
+	request.Header.Add("Content-Type", "application/json")
 
 	response, err := c.HttpClient.Do(request)
 	if err != nil {
