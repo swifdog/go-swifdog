@@ -68,8 +68,8 @@ log.Fatal(err)
 ## To-Do's
 
 - [x] Account (Get)
-- [ ] Account Tokens (~~List~~, ~~Create~~, Read, ~~Delete~~)
-- [ ] Projects (~~List~~, Create, Patch, Read, Delete)
-- [ ] Volumes (~~List~~, ~~Create~~, ~~Patch~~, Read, ~~Delete~~)
+- [x] Account Tokens (~~List~~, ~~Create~~, ~~Delete~~)
+- [x] Projects (~~List~~, ~~Create~~, ~~Patch~~, ~~Read~~, ~~Delete~~)
+- [x] Volumes (~~List~~, ~~Create~~, ~~Patch~~, ~~Read~~, ~~Delete~~)
 - [ ] Packets (List, Create, Patch, Read, Delete)
 - [ ] IngressRules (List, Create, Patch, Read, Delete)

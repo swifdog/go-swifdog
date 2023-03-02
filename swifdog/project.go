@@ -87,6 +87,23 @@ func (c *Client) PatchProject(projectId string, body *CreateOrPatchProjectReques
 	return &responseObject, nil
 }
 
+func (c *Client) GetProject(projectId string) (*Project, error) {
+	request, err := http.NewRequest("GET", c.Endpoint+"/projects/"+projectId, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	responseData, err := c.ExecuteRequest(request)
+	if err != nil {
+		return nil, err
+	}
+
+	var responseObject Project
+	json.Unmarshal(*responseData, &responseObject)
+
+	return &responseObject, nil
+}
+
 func (c *Client) DeleteProjectById(projectId string) error {
 	request, err := http.NewRequest("DELETE", c.Endpoint+"/projects/"+projectId, nil)
 	if err != nil {

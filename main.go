@@ -40,6 +40,7 @@ func main() {
 	}
 	*/
 
+	// cleanup existing projects
 	prjs, err := client.ListProjects()
 	if err != nil {
 		log.Fatal(err)
@@ -54,6 +55,7 @@ func main() {
 
 	log.Println(prjs)
 
+	// create project
 	newPrj, err := client.CreateProject(&CreateOrPatchProjectRequest{
 
 	})
@@ -62,6 +64,8 @@ func main() {
 	}
 
 	log.Println(newPrj)
+
+	// patch project attributes
 	newPrj, err = client.PatchProject(newPrj.ID, &CreateOrPatchProjectRequest{
 		Name: "test-project",
 		Description: "ich mag golang!",
@@ -72,6 +76,7 @@ func main() {
 
 	log.Println(newPrj)
 
+	// create pv
 	newVolume, err := client.CreatePersistentVolume(newPrj.ID, &CreateOrPatchPersistentVolumeRequest{
 		Name: "demo-volume",
 		Capacity: "1G",
@@ -82,6 +87,7 @@ func main() {
 
 	log.Println(newVolume)
 
+	// print a list of pvs
 	volumes, err := client.ListPersistentVolume(newPrj.ID)
 	if err != nil {
 		log.Fatal(err)

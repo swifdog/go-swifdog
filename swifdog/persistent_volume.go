@@ -87,6 +87,23 @@ func (c *Client) PatchPersistentVolume(projectId string, persistentVolumeId stri
 	return &responseObject, nil
 }
 
+func (c *Client) GetPersistentVolume(projectId string, persistentVolumeId string) (*PersistentVolume, error) {
+	request, err := http.NewRequest("GET", c.Endpoint+"/projects/"+projectId+"/volumes/"+persistentVolumeId, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	responseData, err := c.ExecuteRequest(request)
+	if err != nil {
+		return nil, err
+	}
+
+	var responseObject PersistentVolume
+	json.Unmarshal(*responseData, &responseObject)
+
+	return &responseObject, nil
+}
+
 func (c *Client) DeletePersistentVolumeById(projectId string, persistentVolumeId string) error {
 	request, err := http.NewRequest("DELETE", c.Endpoint+"/projects/"+projectId+"/volumes/"+persistentVolumeId, nil)
 	if err != nil {
