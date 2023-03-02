@@ -2,6 +2,17 @@
 
 This library provides a Golang API client for the Swifdog API. It is mainly maintained by the core team.
 
+## Examples
+
+```go
+tokens, err := client.ListAccountTokens()
+if err != nil {
+    log.Fatal(err)
+}
+
+log.Println(tokens)
+```
+
 ## To-Do's
 
 -[ ] Account (Get)
