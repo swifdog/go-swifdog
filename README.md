@@ -6,6 +6,8 @@ This library provides a Golang API client for the Swifdog API. It is mainly main
 
 ## Clients
 
+We support two types of authentication: using a basic email/password login and a custom baerer token login.
+
 ### Basic Client
 
 ```go
@@ -23,7 +25,7 @@ client, _ := NewBearerTokenClient("oylI1I4N7QDtf8WuI9UItKACpnwaI69MQZhKELeRzJfzo
 ```go
 account, err := client.GetAccount()
 if err != nil {
-	log.Fatal(err)
+log.Fatal(err)
 }
 
 log.Println(account)
@@ -34,7 +36,7 @@ log.Println(account)
 ```go
 tokens, err := client.ListAccountTokens()
 if err != nil {
-    log.Fatal(err)
+log.Fatal(err)
 }
 
 log.Println(tokens)
@@ -46,7 +48,7 @@ log.Println(tokens)
 str := "test by api client"
 newToken, err := client.CreateAccountToken(&str) // <-- description can be null!
 if err != nil {
-    log.Fatal(err)
+log.Fatal(err)
 }
 
 log.Println(newToken)
@@ -57,9 +59,10 @@ log.Println(newToken)
 ```go
 err = client.DeleteAccountTokenById("5279f81f-b50b-46e7-a4f5-7a074eb2f1e1")
 if err != nil {
-    log.Fatal(err)
+log.Fatal(err)
 }
 ```
+
 ## To-Do's
 
 -[ ] Account (Get)
