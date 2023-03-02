@@ -13,6 +13,10 @@ type AccountToken struct {
 	CreationDateTime string `json:"creationDateTime"`
 }
 
+type CreateAccountTokenRequest struct {
+	Description *string
+}
+
 func (c *Client) ListAccountTokens() ([]AccountToken, error) {
 	request, err := http.NewRequest("GET", c.Endpoint+"/account/tokens", nil)
 	if err != nil {
@@ -30,11 +34,9 @@ func (c *Client) ListAccountTokens() ([]AccountToken, error) {
 	return responseObject, nil
 }
 
-func (c* Client) CreateAccountToken(description *string) (*AccountToken, error) {
-	body := map[string]string{}
-
-	if description != nil {
-		body["description"] = *description
+func (c *Client) CreateAccountToken(body *CreateAccountTokenRequest) (*AccountToken, error) {
+	if body == nil {
+		body = &CreateAccountTokenRequest{}
 	}
 
 	jsonData, err := json.Marshal(body)
@@ -58,7 +60,7 @@ func (c* Client) CreateAccountToken(description *string) (*AccountToken, error) 
 	return &responseObject, nil
 }
 
-func (c* Client) DeleteAccountTokenById(accountTokenId string) error {
+func (c *Client) DeleteAccountTokenById(accountTokenId string) error {
 	request, err := http.NewRequest("DELETE", c.Endpoint+"/account/tokens/"+accountTokenId, nil)
 	if err != nil {
 		return err

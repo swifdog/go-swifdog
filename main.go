@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	client, _ := NewBasicClient("oylI1I4N7QDtf8WuI9UItKACpnwaI69MQZhKELeRzJfzovMmZVdvFKzrOCCr9S7j")
+	client, _ := NewBearerTokenClient("bF22pK1Kal7aqFgpMvYX1t22ILS5JVlHVvy1SDzihRdPTkBK1gnwSeiuXCEdHAaP")
 	account, err := client.GetAccount()
 	if err != nil {
 		log.Fatal(err)
@@ -45,6 +45,47 @@ func main() {
 		log.Fatal(err)
 	}
 
+	for _, prj := range prjs {
+		err = client.DeleteProjectById(prj.ID)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
 	log.Println(prjs)
 
+	newPrj, err := client.CreateProject(&CreateOrPatchProjectRequest{
+
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println(newPrj)
+	newPrj, err = client.PatchProject(newPrj.ID, &CreateOrPatchProjectRequest{
+		Name: "test-project",
+		Description: "ich mag golang!",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println(newPrj)
+
+	newVolume, err := client.CreatePersistentVolume(newPrj.ID, &CreateOrPatchPersistentVolumeRequest{
+		Name: "demo-volume",
+		Capacity: "1G",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println(newVolume)
+
+	volumes, err := client.ListPersistentVolume(newPrj.ID)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println(volumes)
 }
