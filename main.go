@@ -2,11 +2,11 @@ package main
 
 import (
 	"log"
-	. "swifdog.io/swifdog-sdk/swifdog"
+	"swifdog.io/swifdog-sdk/swifdog"
 )
 
 func main() {
-	client, _ := NewBearerTokenClient("gFxdTo3ONHd1EDk859NX8tNsqRDegP8zhzDWtfCMKkUPK4Gv2Wfm53aAXEoJeLcD")
+	client, _ := swifdog.NewBearerTokenClient("gFxdTo3ONHd1EDk859NX8tNsqRDegP8zhzDWtfCMKkUPK4Gv2Wfm53aAXEoJeLcD")
 	account, err := client.GetAccount()
 	if err != nil {
 		log.Fatal(err)
@@ -56,7 +56,7 @@ func main() {
 	log.Println(prjs)
 
 	// create project
-	newPrj, err := client.CreateProject(&CreateOrPatchProjectRequest{})
+	newPrj, err := client.CreateProject(&swifdog.CreateOrPatchProjectRequest{})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -64,7 +64,7 @@ func main() {
 	log.Println(newPrj)
 
 	// patch project attributes
-	newPrj, err = client.PatchProject(newPrj.ID, &CreateOrPatchProjectRequest{
+	newPrj, err = client.PatchProject(newPrj.ID, &swifdog.CreateOrPatchProjectRequest{
 		Name:        "test-project",
 		Description: "ich mag golang!",
 	})
@@ -75,7 +75,7 @@ func main() {
 	log.Println(newPrj)
 
 	// create pv
-	newVolume, err := client.CreatePersistentVolume(newPrj.ID, &CreateOrPatchPersistentVolumeRequest{
+	newVolume, err := client.CreatePersistentVolume(newPrj.ID, &swifdog.CreateOrPatchPersistentVolumeRequest{
 		Name:     "demo-volume",
 		Capacity: "test",
 	})
