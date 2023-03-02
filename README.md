@@ -67,7 +67,7 @@ log.Fatal(err)
 
 ## To-Do's
 
-- [ ] Account (Get)
+- [x] Account (Get)
 - [ ] Account Tokens (List, Create, Read, Write, Delete)
 - [ ] Projects (List, Create, Patch, Read, Write, Delete)
 - [ ] Volumes (List, Create, Patch, Read, Write, Delete)
