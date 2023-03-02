@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	. "swifdog.io/swifdog-sdk/swifdog"
 )
 
 func main() {
