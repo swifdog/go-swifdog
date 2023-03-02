@@ -62,7 +62,7 @@ func (c *Client) ExecuteRequest(request *http.Request) (*[]byte, error) {
 	}
 
 	// Status 2xx shows a success! Anyhting else will be an error.
-	if response.StatusCode >= 200 || response.StatusCode < 299 {
+	if response.StatusCode >= 200 && response.StatusCode < 299 {
 		return &responseData, nil
 	} else {
 		var responseObject ResponseError

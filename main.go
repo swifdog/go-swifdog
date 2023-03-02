@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	client, _ := swifdog.NewBearerTokenClient("gFxdTo3ONHd1EDk859NX8tNsqRDegP8zhzDWtfCMKkUPK4Gv2Wfm53aAXEoJeLcD")
+	client, _ := swifdog.NewBearerTokenClient("R4kGi8UW7NWdcrKxuu63uuvEpNpJ43H1JAeJ8UqaQwzSqlEoqs9x8txDlFGFhSWI")
 	account, err := client.GetAccount()
 	if err != nil {
 		log.Fatal(err)
@@ -53,10 +53,10 @@ func main() {
 		}
 	}
 
-	log.Println(prjs)
-
 	// create project
-	newPrj, err := client.CreateProject(&swifdog.CreateOrPatchProjectRequest{})
+	newPrj, err := client.CreateProject(&swifdog.CreateOrPatchProjectRequest{
+		Name: "ich-mag-kekse",
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
