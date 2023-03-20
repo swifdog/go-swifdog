@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	client, _ := swifdog.NewBearerTokenClient("R4kGi8UW7NWdcrKxuu63uuvEpNpJ43H1JAeJ8UqaQwzSqlEoqs9x8txDlFGFhSWI")
+	client, _ := swifdog.NewBasicClient("max@mustermann.de", "test")
 	account, err := client.GetAccount()
 	if err != nil {
 		log.Fatal(err)
@@ -41,7 +41,7 @@ func main() {
 	*/
 
 	// cleanup existing projects
-	prjs, err := client.ListProjects()
+	/* prjs, err := client.ListProjects()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -92,4 +92,57 @@ func main() {
 	}
 
 	log.Println(volumes)
+
+	packet, err := client.CreatePacket(newPrj.ID, &swifdog.CreateOrPatchPacketRequest{
+		Name:  "nginx",
+		Image: "nginx:latest",
+		EnvironmentVariables: []swifdog.EnvironmentVariable{
+			{
+				Key:   "DATABASE_PASSWORD",
+				Value: "IchBinSicher123!",
+			},
+		},
+		VolumeMounts: []swifdog.PersistentVolumeMount{
+			{
+				VolumeName: newVolume.Name,
+				MountPath:  "/var/www/html",
+			},
+		},
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println(packet) */
+
+	newPrj, err := client.GetProject("0411676a-fe02-4961-bb81-5e994cdf9c4c")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(newPrj)
+
+	packet, err := client.GetPacket(newPrj.ID, "4c0dfdbb-02ef-41f7-baef-3d3e2f9213c5")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(packet)
+
+	ingressRule, err := client.CreateIngressRule(newPrj.ID, &swifdog.IngressRule{
+		Hostname: "example.com",
+		PathRules: []swifdog.IngressRulePath{
+			{
+				Path:          "/",
+				PacketId:      packet.ID,
+				ContainerPort: 80,
+			},
+		},
+	})
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println(ingressRule)
 }
