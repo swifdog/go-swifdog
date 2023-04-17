@@ -11,8 +11,9 @@ type Packet struct {
 	Name                 string                  `json:"name"`
 	Image                string                  `json:"image"`
 	RegistryCredentialId string                  `json:"registryCredentialId"`
-	EnvironmentVariables []EnvironmentVariable   `json:"envs"`
-	VolumeMounts         []PersistentVolumeMount `json:"volumeMounts"`
+	EnvironmentVariables []EnvironmentVariable   `json:"environmentVariables"`
+	VolumeMounts         []PersistentVolumeMount `json:"mountedVolumes"`
+	InternalPorts        []string                `json:"internalPorts"`
 	CreationDateTime     string                  `json:"creationDateTime"`
 }
 
@@ -31,8 +32,9 @@ type CreateOrPatchPacketRequest struct {
 	Name                 string                  `json:"name"`
 	Image                string                  `json:"image"`
 	RegistryCredentialId string                  `json:"registryCredentialId"`
-	EnvironmentVariables []EnvironmentVariable   `json:"envs"`
-	VolumeMounts         []PersistentVolumeMount `json:"volumeMounts"`
+	EnvironmentVariables []EnvironmentVariable   `json:"environmentVariables"`
+	VolumeMounts         []PersistentVolumeMount `json:"mountedVolumes"`
+	InternalPorts        []string                `json:"internalPorts"`
 
 	Packet
 }

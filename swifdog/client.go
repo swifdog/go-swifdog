@@ -13,6 +13,10 @@ type ResponseError struct {
 	Message    string `json:"message"`
 }
 
+const (
+	ApiEndpoint = "http://localhost:9090"
+)
+
 type Client struct {
 	Endpoint            string
 	AuthorizationHeader *string
@@ -28,7 +32,7 @@ func NewBasicClient(email string, password string) (*Client, error) {
 	header := "Basic " + basicAuth(email, password)
 
 	return &Client{
-		Endpoint:            "http://localhost:9090",
+		Endpoint:            ApiEndpoint,
 		AuthorizationHeader: &header,
 		HttpClient:          &http.Client{},
 	}, nil
@@ -38,7 +42,7 @@ func NewBearerTokenClient(token string) (*Client, error) {
 	header := "Bearer " + token
 
 	return &Client{
-		Endpoint:            "http://localhost:9090",
+		Endpoint:            ApiEndpoint,
 		AuthorizationHeader: &header,
 		HttpClient:          &http.Client{},
 	}, nil

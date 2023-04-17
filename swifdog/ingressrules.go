@@ -61,7 +61,31 @@ func (c *Client) CreateIngressRule(projectId string, body *IngressRule) (*Ingres
 	return &responseObject, nil
 }
 
-// todo: implement patch!
+func (c *Client) PatchIngressRule(projectId string, ingressRuleId string, body *IngressRule) (*IngressRule, error) {
+	if body == nil {
+		body = &IngressRule{}
+	}
+
+	jsonData, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+
+	request, err := http.NewRequest("PATCH", c.Endpoint+"/projects/"+projectId+"/ingressrules/"+ingressRuleId, bytes.NewBuffer(jsonData))
+	if err != nil {
+		return nil, err
+	}
+
+	responseData, err := c.ExecuteRequest(request)
+	if err != nil {
+		return nil, err
+	}
+
+	var responseObject IngressRule
+	json.Unmarshal(*responseData, &responseObject)
+
+	return &responseObject, nil
+}
 
 func (c *Client) GetIngressRule(projectId string, ingressRuleId string) (*IngressRule, error) {
 	request, err := http.NewRequest("GET", c.Endpoint+"/projects/"+projectId+"/ingressrules/"+ingressRuleId, nil)

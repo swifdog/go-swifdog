@@ -14,6 +14,25 @@ func main() {
 
 	log.Println(account)
 
+	var arr []swifdog.IngressRulePath
+
+	arr = append(arr, swifdog.IngressRulePath{
+		Path:          "/",
+		ContainerPort: 80,
+		PacketId:      "de67d068-b346-4c18-9f4a-0ebdb8dba744",
+	})
+
+	ing, err := client.PatchIngressRule("9092c670-474d-4f5b-bae8-f6f2e26dc11b", "f19a5c61-0136-4f32-b8a6-d9f44827aab7", &swifdog.IngressRule{
+		Hostname:  "example.com",
+		PathRules: arr,
+	})
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println(ing)
+
 	/** List account tokens
 	tokens, err := client.ListAccountTokens()
 	if err != nil {
@@ -79,7 +98,7 @@ func main() {
 	log.Println(packet) */
 
 	// create project
-	newPrj, err := client.CreateProject(&swifdog.CreateOrPatchProjectRequest{
+	/* newPrj, err := client.CreateProject(&swifdog.CreateOrPatchProjectRequest{
 		Name: "cool-golang-project",
 	})
 	if err != nil {
@@ -158,6 +177,5 @@ func main() {
 		log.Fatal(err)
 	}
 
-	log.Println(ingressRule)
-
+	log.Println(ingressRule) */
 }
