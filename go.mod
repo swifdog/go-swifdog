@@ -1,4 +1,4 @@
-module swifdog.io/swifdog-sdk
+module github.com/swifdog/go-swifdog
 
 go 1.19
 

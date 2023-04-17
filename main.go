@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/swifdog/go-swifdog/swifdog"
 	"log"
-	"swifdog.io/swifdog-sdk/swifdog"
 )
 
 func main() {
