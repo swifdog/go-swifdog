@@ -14,7 +14,7 @@ type ResponseError struct {
 }
 
 const (
-	ApiEndpoint = "http://localhost:9090"
+	ApiEndpoint = "https://api.swifdog.io"
 )
 
 type Client struct {
