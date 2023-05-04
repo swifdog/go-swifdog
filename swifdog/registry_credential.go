@@ -8,7 +8,7 @@ import (
 
 type RegistryCredential struct {
 	ID               string `json:"id"`
-	Hostname         string `json:"hostname"`
+	Hostname         string `json:"host"`
 	Email            string `json:"email"`
 	Username         string `json:"username"`
 	Password         string `json:"password"`
@@ -16,7 +16,7 @@ type RegistryCredential struct {
 }
 
 type CreateOrPatchRegistryCredentialRequest struct {
-	Hostname string `json:"hostname"`
+	Hostname string `json:"host"`
 	Email    string `json:"email"`
 	Username string `json:"username"`
 	Password string `json:"password"`
@@ -75,7 +75,7 @@ func (c *Client) PatchRegistryCredential(projectId string, registryCredentialId 
 		return nil, err
 	}
 
-	request, err := http.NewRequest("PATCH", c.Endpoint+"/projects/"+projectId+"/registrycredential/"+registryCredentialId, bytes.NewBuffer(jsonData))
+	request, err := http.NewRequest("PATCH", c.Endpoint+"/projects/"+projectId+"/registrycredentials/"+registryCredentialId, bytes.NewBuffer(jsonData))
 	if err != nil {
 		return nil, err
 	}
