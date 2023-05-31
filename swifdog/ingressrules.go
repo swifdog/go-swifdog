@@ -7,9 +7,10 @@ import (
 )
 
 type IngressRule struct {
-	ID        string            `json:"id"`
-	Hostname  string            `json:"hostname"`
-	PathRules []IngressRulePath `json:"pathRules"`
+	ID            string            `json:"id"`
+	Hostname      string            `json:"hostname"`
+	AutoManageSSL bool              `json:"autoManageSSL"`
+	PathRules     []IngressRulePath `json:"pathRules"`
 }
 
 type IngressRulePath struct {
