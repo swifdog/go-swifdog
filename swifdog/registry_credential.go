@@ -8,18 +8,16 @@ import (
 
 type RegistryCredential struct {
 	ID               string `json:"id"`
-	Hostname         string `json:"host"`
-	Email            string `json:"email"`
+	RegistryURL      string `json:"registryUrl"`
 	Username         string `json:"username"`
 	Password         string `json:"password"`
 	CreationDateTime string `json:"creationDateTime"`
 }
 
 type CreateOrPatchRegistryCredentialRequest struct {
-	Hostname string `json:"host"`
-	Email    string `json:"email"`
-	Username string `json:"username"`
-	Password string `json:"password"`
+	RegistryURL string `json:"registryUrl"`
+	Username    string `json:"username"`
+	Password    string `json:"password"`
 }
 
 func (c *Client) ListRegistryCredential(projectId string) ([]RegistryCredential, error) {
