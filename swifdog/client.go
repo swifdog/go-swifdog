@@ -13,7 +13,7 @@ type ResponseError struct {
 	Message    string `json:"message"`
 }
 
-var (
+const (
 	ApiEndpoint = "https://api.swifdog.io"
 )
 
@@ -24,7 +24,7 @@ type Client struct {
 }
 
 func (c *Client) WithEndpoint(Endpoint string) {
-	ApiEndpoint = Endpoint
+	c.Endpoint = Endpoint
 }
 
 func basicAuth(username, password string) string {
