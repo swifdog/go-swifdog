@@ -13,7 +13,7 @@ type ResponseError struct {
 	Message    string `json:"message"`
 }
 
-const (
+var (
 	ApiEndpoint = "https://api.swifdog.io"
 )
 
@@ -21,6 +21,10 @@ type Client struct {
 	Endpoint            string
 	AuthorizationHeader *string
 	HttpClient          *http.Client
+}
+
+func (c *Client) WithEndpoint(Endpoint string) {
+	ApiEndpoint = Endpoint
 }
 
 func basicAuth(username, password string) string {
